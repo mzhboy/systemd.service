@@ -1,0 +1,24 @@
+#  This file is part of systemd.
+#
+#  systemd is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU Lesser General Public License as published by
+#  the Free Software Foundation; either version 2.1 of the License, or
+#  (at your option) any later version.
+
+[Unit]
+Description=thunder
+#ConditionFileIsExecutable=/etc/init.d/thunder
+After=rc.local.service
+
+[Service]
+#ExecStart=/etc/init.d/thunder start
+#ExecStop=/etc/init.d/thunder stop
+User=thunder
+Type=forking
+ExecStart=/thunderembed/portal
+ExecStop=/thunderembed/portal -s
+#TimeoutSec=0
+SysVStartPriority=99
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,20 @@
+#  This file is part of systemd.
+#
+#  systemd is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU Lesser General Public License as published by
+#  the Free Software Foundation; either version 2.1 of the License, or
+#  (at your option) any later version.
+
+[Unit]
+Description=Shadowsocks-libev is a lightweight secured scoks5 proxy for embedded devices and low end boxes
+After=network.target local_fs.target remote_fs.target
+
+[Service]
+PIDFile=/run/ss-local.pid
+EnvironmentFile=/etc/default/shadowsocks
+ExecStart=/usr/bin/ss-local -c $CONFFILE
+Restart=always
+TimeoutSec=128
+
+[Install]
+WantedBy=multi-user.target
